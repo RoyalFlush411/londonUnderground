@@ -1649,4 +1649,711 @@ public class londonUndergroundScript : MonoBehaviour
             }
         }
     }
+
+#pragma warning disable 414
+	private string TwitchHelpMessage = "Submit a line and station for the top row with !{0} top circle embankment, substitute top for with middle or bottom for the middle and bottom rows respectivly. Use Hammersmith for the Hammersmith & City line.";
+#pragma warning disable 414
+
+	private IEnumerator ProcessTwitchCommand(string command)
+	{
+		command = command.Replace("’", "'");
+		var commands = command.ToLowerInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+		if (commands.Length < 3 && commands[0] != "submit")
+			yield break;
+		else if (commands[0] == "top")
+		{
+			var station = command.ToLowerInvariant().Substring(commands[0].Length + commands[1].Length + 1);
+			yield return null;
+			bool lineCorrect = false;
+			int iteration = 0;
+			while (!(lineCorrect || iteration == 11))
+			{
+				yield return changeLine1;
+				yield return null;
+				yield return changeLine1;
+				yield return null;
+				iteration++;
+				if ((lineOptions[line1OptionsIndex].ToLowerInvariant() == commands[1]) || (commands[1] == "hammersmith" && lineOptions[line1OptionsIndex].ToLowerInvariant() == "hammersmith & city"))
+					lineCorrect = true;
+			}
+			if (!lineCorrect)
+			{
+				yield return string.Format("sendtochaterror The specified line {0}, does not exist.", commands[1]);
+				yield break;
+			}
+			else
+			{
+				switch (commands[1])
+				{
+					case "bakerloo":
+						yield return null;
+						bool bakerlooStationCorrect = false;
+						iteration = 0;
+						while (!(bakerlooStationCorrect || iteration == bakerlooStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								bakerlooStationCorrect = true;
+						}
+						if (!bakerlooStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "central":
+						yield return null;
+						bool centralStationCorrect = false;
+						iteration = 0;
+						while (!(centralStationCorrect || iteration == centralStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null; ;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								centralStationCorrect = true;
+						}
+						if (!centralStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "circle":
+						yield return null;
+						bool circleStationCorrect = false;
+						iteration = 0;
+						while (!(circleStationCorrect || iteration == circleStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								circleStationCorrect = true;
+						}
+						if (!circleStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "district":
+						yield return null;
+						bool districtStationCorrect = false;
+						iteration = 0;
+						while (!(districtStationCorrect || iteration == circleStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								districtStationCorrect = true;
+						}
+						if (!districtStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "hammersmith":
+						yield return null;
+						bool hammersmithStationCorrect = false;
+						iteration = 0;
+						while (!(hammersmithStationCorrect || iteration == hammersmithStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								hammersmithStationCorrect = true;
+						}
+						if (!hammersmithStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "jubilee":
+						yield return null;
+						bool jubileeStationCorrect = false;
+						iteration = 0;
+						while (!(jubileeStationCorrect || iteration == jubileeStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								jubileeStationCorrect = true;
+						}
+						if (!jubileeStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "metropolitan":
+						yield return null;
+						bool metropolitanStationCorrect = false;
+						iteration = 0;
+						while (!(metropolitanStationCorrect || iteration == metropolitanStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								metropolitanStationCorrect = true;
+						}
+						if (!metropolitanStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "northern":
+						yield return null;
+						bool northernStationCorrect = false;
+						iteration = 0;
+						while (!(northernStationCorrect || iteration == northernStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								northernStationCorrect = true;
+						}
+						if (!northernStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "piccadilly":
+						yield return null;
+						bool piccadillyStationCorrect = false;
+						iteration = 0;
+						while (!(piccadillyStationCorrect || iteration == piccadillyStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								piccadillyStationCorrect = true;
+						}
+						if (!piccadillyStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "victoria":
+						yield return null;
+						bool victoriaStationCorrect = false;
+						iteration = 0;
+						while (!(victoriaStationCorrect || iteration == victoriaStations.Length))
+						{
+							yield return changeStation1;
+							yield return null;
+							yield return changeStation1;
+							yield return null;
+							iteration++;
+							if (line1Station.text.ToLowerInvariant().Trim() == station.Trim())
+								victoriaStationCorrect = true;
+						}
+						if (!victoriaStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+				}
+			}
+		}
+		else if (commands[0] == "middle")
+		{
+			var station = command.ToLowerInvariant().Substring(commands[0].Length + commands[1].Length + 1);
+			yield return null;
+			bool lineCorrect = false;
+			int iteration = 0;
+			while (!(lineCorrect || iteration == 11))
+			{
+				yield return changeLine2;
+				yield return null;
+				yield return changeLine2;
+				yield return null;
+				iteration++;
+				if ((lineOptions[line2OptionsIndex].ToLowerInvariant() == commands[1]) || (commands[1] == "hammersmith" && lineOptions[line2OptionsIndex].ToLowerInvariant() == "hammersmith & city"))
+					lineCorrect = true;
+			}
+			if (!lineCorrect)
+			{
+				yield return string.Format("sendtochaterror The specified line {0}, does not exist.", commands[1]);
+				yield break;
+			}
+			else
+			{
+				switch (commands[1])
+				{
+					case "bakerloo":
+						yield return null;
+						bool bakerlooStationCorrect = false;
+						iteration = 0;
+						while (!(bakerlooStationCorrect || iteration == bakerlooStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								bakerlooStationCorrect = true;
+						}
+						if (!bakerlooStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "central":
+						yield return null;
+						bool centralStationCorrect = false;
+						iteration = 0;
+						while (!(centralStationCorrect || iteration == centralStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								centralStationCorrect = true;
+						}
+						if (!centralStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "circle":
+						yield return null;
+						bool circleStationCorrect = false;
+						iteration = 0;
+						while (!(circleStationCorrect || iteration == circleStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								circleStationCorrect = true;
+						}
+						if (!circleStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "district":
+						yield return null;
+						bool districtStationCorrect = false;
+						iteration = 0;
+						while (!(districtStationCorrect || iteration == districtStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								districtStationCorrect = true;
+						}
+						if (!districtStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "hammersmith":
+						yield return null;
+						bool hammersmithStationCorrect = false;
+						iteration = 0;
+						while (!(hammersmithStationCorrect || iteration == hammersmithStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								hammersmithStationCorrect = true;
+						}
+						if (!hammersmithStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "jubilee":
+						yield return null;
+						bool jubileeStationCorrect = false;
+						iteration = 0;
+						while (!(jubileeStationCorrect || iteration == jubileeStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								jubileeStationCorrect = true;
+						}
+						if (!jubileeStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "metropolitan":
+						yield return null;
+						bool metropolitanStationCorrect = false;
+						iteration = 0;
+						while (!(metropolitanStationCorrect || iteration == metropolitanStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								metropolitanStationCorrect = true;
+						}
+						if (!metropolitanStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "northern":
+						yield return null;
+						bool northernStationCorrect = false;
+						iteration = 0;
+						while (!(northernStationCorrect || iteration == northernStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								northernStationCorrect = true;
+						}
+						if (!northernStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "piccadilly":
+						yield return null;
+						bool piccadillyStationCorrect = false;
+						iteration = 0;
+						while (!(piccadillyStationCorrect || iteration == piccadillyStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								piccadillyStationCorrect = true;
+						}
+						if (!piccadillyStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "victoria":
+						yield return null;
+						bool victoriaStationCorrect = false;
+						iteration = 0;
+						while (!(victoriaStationCorrect || iteration == victoriaStations.Length))
+						{
+							yield return changeStation2;
+							yield return null;
+							yield return changeStation2;
+							yield return null;
+							iteration++;
+							if (line2Station.text.ToLowerInvariant().Trim() == station.Trim())
+								victoriaStationCorrect = true;
+						}
+						if (!victoriaStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+				}
+			}
+		}
+		else if (commands[0] == "bottom")
+		{
+			var station = command.ToLowerInvariant().Substring(commands[0].Length + commands[1].Length + 1);
+			yield return null;
+			bool lineCorrect = false;
+			int iteration = 0;
+			while (!(lineCorrect || iteration == 11))
+			{
+				yield return changeLine3;
+				yield return null;
+				yield return changeLine3;
+				yield return null;
+				iteration++;
+				if ((lineOptions[line3OptionsIndex].ToLowerInvariant() == commands[1]) || (commands[1] == "hammersmith" && lineOptions[line3OptionsIndex].ToLowerInvariant() == "hammersmith & city"))
+					lineCorrect = true;
+			}
+			if (!lineCorrect)
+			{
+				yield return string.Format("sendtochaterror The specified line {0}, does not exist.", commands[1]);
+				yield break;
+			}
+			else
+			{
+				switch (commands[1])
+				{
+					case "bakerloo":
+						yield return null;
+						bool bakerlooStationCorrect = false;
+						iteration = 0;
+						while (!(bakerlooStationCorrect || iteration == bakerlooStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								bakerlooStationCorrect = true;
+						}
+						if (!bakerlooStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "central":
+						yield return null;
+						bool centralStationCorrect = false;
+						iteration = 0;
+						while (!(centralStationCorrect || iteration == centralStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								centralStationCorrect = true;
+						}
+						if (!centralStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "circle":
+						yield return null;
+						bool circleStationCorrect = false;
+						iteration = 0;
+						while (!(circleStationCorrect || iteration == circleStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								circleStationCorrect = true;
+						}
+						if (!circleStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "district":
+						yield return null;
+						bool districtStationCorrect = false;
+						iteration = 0;
+						while (!(districtStationCorrect || iteration == districtStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								districtStationCorrect = true;
+						}
+						if (!districtStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "hammersmith":
+						yield return null;
+						bool hammersmithStationCorrect = false;
+						iteration = 0;
+						while (!(hammersmithStationCorrect || iteration == hammersmithStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								hammersmithStationCorrect = true;
+						}
+						if (!hammersmithStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "jubilee":
+						yield return null;
+						bool jubileeStationCorrect = false;
+						iteration = 0;
+						while (!(jubileeStationCorrect || iteration == jubileeStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								jubileeStationCorrect = true;
+						}
+						if (!jubileeStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "metropolitan":
+						yield return null;
+						bool metropolitanStationCorrect = false;
+						iteration = 0;
+						while (!(metropolitanStationCorrect || iteration == metropolitanStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								metropolitanStationCorrect = true;
+						}
+						if (!metropolitanStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "northern":
+						yield return null;
+						bool northernStationCorrect = false;
+						iteration = 0;
+						while (!(northernStationCorrect || iteration == northernStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								northernStationCorrect = true;
+						}
+						if (!northernStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "piccadilly":
+						yield return null;
+						bool piccadillyStationCorrect = false;
+						iteration = 0;
+						while (!(piccadillyStationCorrect || iteration == piccadillyStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								piccadillyStationCorrect = true;
+						}
+						if (!piccadillyStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+					case "victoria":
+						yield return null;
+						bool victoriaStationCorrect = false;
+						iteration = 0;
+						while (!(victoriaStationCorrect || iteration == victoriaStations.Length))
+						{
+							yield return changeStation3;
+							yield return null;
+							yield return changeStation3;
+							yield return null;
+							iteration++;
+							if (line3Station.text.ToLowerInvariant().Trim() == station.Trim())
+								victoriaStationCorrect = true;
+						}
+						if (!victoriaStationCorrect)
+						{
+							yield return string.Format("sendtochaterror The specified station, {0}, does not exist.", station);
+							yield break;
+						}
+						break;
+				}
+			}
+		}
+		else if (commands[0] == "submit")
+		{
+			yield return null;
+			yield return submitButton;
+			yield return null;
+			yield return submitButton;
+		}
+		else
+		{
+			yield break;
+		}
+	}
 }
