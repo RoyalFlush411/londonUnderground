@@ -1656,7 +1656,7 @@ public class londonUndergroundScript : MonoBehaviour
 
 	private IEnumerator ProcessTwitchCommand(string command)
 	{
-		command = command.Replace("’", "'");
+		command = command.Replace("Â’", "'");
 		var commands = command.ToLowerInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 		if (commands.Length < 3 && commands[0] != "submit")
 			yield break;
