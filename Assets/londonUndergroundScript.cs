@@ -1651,7 +1651,7 @@ public class londonUndergroundScript : MonoBehaviour
     }
 
 #pragma warning disable 414
-	private string TwitchHelpMessage = "Submit a line and station for the top row with !{0} top circle embankment, substitute top for with middle or bottom for the middle and bottom rows respectivly. Use Hammersmith for the Hammersmith & City line.";
+	private string TwitchHelpMessage = "Select a line and station for the top row with !{0} top circle embankment, substitute top for with middle or bottom for the middle and bottom rows respectivly. Use Hammersmith for the Hammersmith & City line. Submit with !{0} submit";
 #pragma warning disable 414
 
 	private IEnumerator ProcessTwitchCommand(string command)
@@ -1749,7 +1749,7 @@ public class londonUndergroundScript : MonoBehaviour
 						yield return null;
 						bool districtStationCorrect = false;
 						iteration = 0;
-						while (!(districtStationCorrect || iteration == circleStations.Length))
+						while (!(districtStationCorrect || iteration == districtStations.Length))
 						{
 							yield return changeStation1;
 							yield return null;
