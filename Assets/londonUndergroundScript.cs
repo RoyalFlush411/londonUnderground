@@ -842,7 +842,6 @@ public class londonUndergroundScript : MonoBehaviour
                     levelsPassed++;
                     Debug.LogFormat("[The London Underground #{0}] Correct! You took the {1} line to {2}. Journey complete.", moduleId, line1Line.text, line1Station.text);
                     LevelChecker();
-                    Start();
                 }
                 else if (line2Station.text != " ")
                 {
@@ -1656,7 +1655,7 @@ public class londonUndergroundScript : MonoBehaviour
 
 	private IEnumerator ProcessTwitchCommand(string command)
 	{
-		command = command.Replace("’", "'");
+		command = command.Replace("Â’", "'");
 		var commands = command.ToLowerInvariant().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 		if (commands.Length < 3 && commands[0] != "submit")
 			yield break;
